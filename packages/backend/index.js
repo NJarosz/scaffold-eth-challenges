@@ -5,9 +5,15 @@ var cors = require('cors')
 var bodyParser = require("body-parser");
 var app = express();
 
+const PORT = process.env.PORT || 3030;
+
 let transactions = {}
 
 app.use(cors())
+
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
