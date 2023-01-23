@@ -274,7 +274,17 @@ export default function CreateTransaction({
               console.log("isWriter", isWriter);
 
               if (isWriter) {
+                console.log("CHECKPOINT1");
                 if (adminPrivs.includes(methodName) && recover == admin) {
+                  console.log("chainId:", localProvider._network.chainId);
+                  console.log("address:", readContracts[contractName].address);
+                  console.log("nonce:", nonce.toNumber());
+                  console.log("to:", to);
+                  console.log("amount:", amount);
+                  console.log("data:", data);
+                  console.log("hash:", newHash);
+                  console.log("signautres:", [signature]);
+                  console.log("signers:", recover);
                   const res = await axios.post(poolServerUrl, {
                     chainId: localProvider._network.chainId,
                     address: readContracts[contractName].address,
@@ -305,6 +315,15 @@ export default function CreateTransaction({
                   resetError();
                 }
                 else {
+                  console.log("chainId:", localProvider._network.chainId);
+                  console.log("address:", readContracts[contractName].address);
+                  console.log("nonce:", nonce.toNumber());
+                  console.log("to:", to);
+                  console.log("amount:", amount);
+                  console.log("data:", data);
+                  console.log("hash:", newHash);
+                  console.log("signautres:", [signature]);
+                  console.log("signers:", recover);
                   const res = await axios.post(poolServerUrl, {
                     chainId: localProvider._network.chainId,
                     address: readContracts[contractName].address,

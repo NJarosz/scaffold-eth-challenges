@@ -14,17 +14,20 @@ const main = async () => {
   // 0x22d63804D00b4B2BF3dE7Dd21c22aD839E62f920 (meta-wallet)
 
   const MetaMultiSigWallet = await deploy("MetaMultiSigWallet", [
-    31337,
-    ["0xb67b251b2c19FD1215FfCF3278c009ca3F6617F9",
-      "0x8D4441952bCC8E65a2663a0646cA5A543960B3B7",
-      "0x57654d5e9e57EE93673a75e4bFf3FE7aa44e2805"],
-    "0xb67b251b2c19FD1215FfCF3278c009ca3F6617F9",
+    11155111,
+    ["0xeb50dD3Bb9E4F8986eB59A3fFbC9D72a4A3DD1c8"],
+    "0xeb50dD3Bb9E4F8986eB59A3fFbC9D72a4A3DD1c8",
     1
   ])
 
 
 
-  //const yourContract = await deploy("YourContract") // <-- add in constructor args like line 19 vvvv
+  const yourContract = await deploy("YourContract", [
+    11155111,
+    ["0xeb50dD3Bb9E4F8986eB59A3fFbC9D72a4A3DD1c8"],
+    "0xeb50dD3Bb9E4F8986eB59A3fFbC9D72a4A3DD1c8",
+    1
+  ]) // <-- add in constructor args like line 19 vvvv
 
   //const secondContract = await deploy("SecondContract")
 
@@ -34,11 +37,11 @@ const main = async () => {
 
 
   //If you want to send value to an address from the deployer
-  const deployerWallet = ethers.provider.getSigner()
-  await deployerWallet.sendTransaction({
-    to: "0xb67b251b2c19FD1215FfCF3278c009ca3F6617F9",
-    value: ethers.utils.parseEther("0.01")
-  })
+  // const deployerWallet = ethers.provider.getSigner()
+  // await deployerWallet.sendTransaction({
+  //   to: "0xb67b251b2c19FD1215FfCF3278c009ca3F6617F9",
+  //   value: ethers.utils.parseEther("0.01")
+  // })
 
 
 
@@ -60,21 +63,27 @@ const main = async () => {
 
 
   //If you want to verify your contract on tenderly.co (see setup details in the scaffold-eth README!)
-  /*
+
   await tenderlyVerify(
-    {contractName: "YourContract",
-     contractAddress: yourContract.address
-  })
-  */
+    {
+      contractName: "YourContract",
+      contractAddress: yourContract.address
+    })
+
 
   // If you want to verify your contract on etherscan
-  /*
+  console.log("Contract Address:", MetaMultiSigWallet.address);
   console.log(chalk.blue('verifying on etherscan'))
   await run("verify:verify", {
     address: yourContract.address,
-    // constructorArguments: args // If your contract has constructor arguments, you can pass them as an array
+    constructorArguments: [
+      11155111,
+      ["0xeb50dD3Bb9E4F8986eB59A3fFbC9D72a4A3DD1c8"],
+      "0xeb50dD3Bb9E4F8986eB59A3fFbC9D72a4A3DD1c8",
+      1
+    ]
   })
-  */
+
 
   console.log(
     " 💾  Artifacts (address, abi, and args) saved to: ",

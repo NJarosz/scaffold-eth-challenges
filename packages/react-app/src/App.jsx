@@ -38,10 +38,11 @@ import { CreateTransaction, Transactions, Owners, FrontPage, Streams } from "./v
 
 
 /// 📡 What chain are your contracts deployed to?
-const targetNetwork = NETWORKS['localhost']; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const targetNetwork = NETWORKS['sepolia']; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
-// const poolServerUrl = "https://backend.multisig.holdings:49832/"
-const poolServerUrl = "http://localhost:49832/"
+//const poolServerUrl = "https://backend.multisig.holdings:49832/"
+const poolServerUrl = "http://18.235.248.20/"
+//const poolServerUrl = "http://localhost:49832/"
 
 // 😬 Sorry for all the console logging
 const DEBUG = true
@@ -60,6 +61,7 @@ const mainnetInfura = new JsonRpcProvider("https://mainnet.infura.io/v3/" + INFU
 // 🏠 Your local provider is usually pointed at your local blockchain
 const localProviderUrl = targetNetwork.rpcUrl;
 // as you deploy to other networks you can set REACT_APP_PROVIDER=https://dai.poa.network in packages/react-app/.env
+if (DEBUG) console.log("REACT_APP_PROVIDER", process.env.REACT_APP_PROVIDER);
 const localProviderUrlFromEnv = process.env.REACT_APP_PROVIDER ? process.env.REACT_APP_PROVIDER : localProviderUrl;
 if (DEBUG) console.log("🏠 Connecting to provider:", localProviderUrlFromEnv);
 const localProvider = new StaticJsonRpcProvider(localProviderUrlFromEnv);
@@ -84,6 +86,7 @@ function App(props) {
   // Use your injected provider from 🦊 Metamask or if you don't have it then instantly generate a 🔥 burner wallet.
   const userProvider = useUserProvider(injectedProvider, localProvider);
   const address = useUserAddress(userProvider);
+  console.log(address);
 
   // You can warn the user if you would like them to be on a specific network
   let localChainId = localProvider && localProvider._network && localProvider._network.chainId
@@ -130,6 +133,7 @@ function App(props) {
 
   //📟 Listen for broadcast events
   const ownerEvents = useEventListener(readContracts, contractName, "Owner", localProvider, 1);
+  if (DEBUG) console.log("readContracts:", readContracts, "contractName:", contractName, "localProvider:", localProvider);
   if (DEBUG) console.log("📟 ownerEvents:", ownerEvents)
 
   const writerEvents = useEventListener(readContracts, contractName, "Writer", localProvider, 1);

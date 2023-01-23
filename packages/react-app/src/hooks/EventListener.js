@@ -22,14 +22,16 @@ export default function useEventListener(contracts, contractName, eventName, pro
 
   useEffect(() => {
     if (typeof provider !== "undefined" && typeof startBlock !== "undefined") {
+      let blockNum = 8354871
       // if you want to read _all_ events from your contracts, set this to the block number it is deployed
-      provider.resetEventsBlock(startBlock);
+      provider.resetEventsBlock(blockNum);
     }
     if (contracts && contractName && contracts[contractName]) {
       try {
         contracts[contractName].on(eventName, (...args) => {
-          let blockNumber = args[args.length-1].blockNumber
-          setUpdates(messages => [Object.assign({blockNumber},args.pop().args), ...messages]);
+          setUpdates(eventName);
+          let blockNumber = args[args.length - 1].blockNumber
+          setUpdates(messages => [Object.assign({ blockNumber }, args.pop().args), ...messages]);
         });
         return () => {
           contracts[contractName].removeListener(eventName);

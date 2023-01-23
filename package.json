@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
+    "axios": "^1.2.3",
     "browserlist": "^1.0.1",
     "caniuse-lite": "^1.0.30001218",
     "cors": "^2.8.5",
