@@ -40,8 +40,9 @@ import { CreateTransaction, Transactions, Owners, FrontPage, Streams } from "./v
 /// 📡 What chain are your contracts deployed to?
 const targetNetwork = NETWORKS['sepolia']; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
-//const poolServerUrl = "https://backend.multisig.holdings:49832/"
-const poolServerUrl = "http://18.235.248.20/"
+
+const poolServerUrl = "https://backend.multisig.holdings:49832/"
+//const poolServerUrl = "http://18.235.248.20/"
 //const poolServerUrl = "http://localhost:49832/"
 
 // 😬 Sorry for all the console logging

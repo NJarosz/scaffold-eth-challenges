@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { utils } = require("ethers");
 const fs = require("fs");
 const chalk = require("chalk");
@@ -8,7 +9,7 @@ require("@tenderly/hardhat-tenderly")
 require("@nomiclabs/hardhat-etherscan");
 
 const { isAddress, getAddress, formatUnits, parseUnits } = utils;
-
+const INFURA_ID = process.env.INFURA_ID;
 /*
       📡 This is where you configure your deploy configuration for 🏗 scaffold-eth
 
@@ -51,19 +52,19 @@ module.exports = {
       */
     },
     mainnet: {
-      url: "https://mainnet.infura.io/v3/7d62ce7ffaac432fb7c291325944106d", //<---- YOUR INFURA ID! (or it won't work)
+      url: `https://mainnet.infura.io/v3/${INFURA_ID}`, //<---- YOUR INFURA ID! (or it won't work)
       accounts: {
         mnemonic: mnemonic(),
       },
     },
     sepolia: {
-      url: "https://sepolia.infura.io/v3/7d62ce7ffaac432fb7c291325944106d", //<---- YOUR INFURA ID! (or it won't work)
+      url: `https://sepolia.infura.io/v3/${INFURA_ID}`, //<---- YOUR INFURA ID! (or it won't work)
       accounts: {
         mnemonic: mnemonic(),
       },
     },
     goerli: {
-      url: "https://goerli.infura.io/v3/7d62ce7ffaac432fb7c291325944106d", //<---- YOUR INFURA ID! (or it won't work)
+      url: `https://goerli.infura.io/v3/${INFURA_ID}`, //<---- YOUR INFURA ID! (or it won't work)
       accounts: {
         mnemonic: mnemonic(),
       },
@@ -108,7 +109,7 @@ module.exports = {
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
-    apiKey: "NG9G5WW8JKBIGS3RAM1DQVCAVWQT2BJRK6"
+    apiKey: process.env.ETHERSCAN_KEY,
   }
 };
 
