@@ -4,6 +4,9 @@
 
 ## 👇🏼 Quick Break-Down 👛
 
+## Forked from scaffold-eth-challenges
+### added ADMIN and WRITER (proposal) privileges
+
 This is a smart contract that acts as an off-chain signature-based shared wallet amongst different signers that showcases use of meta-transaction knowledge and ECDSA `recover()`. **If you are looking for the challenge, go to the challenges repo within scaffold-eth!**
 
 > If you are unfamiliar with these concepts, check out all the [ETH.BUILD videos](https://www.youtube.com/watch?v=CbbcISQvy1E&ab_channel=AustinGriffith) by Austin Griffith, especially the Meta Transactions one!
